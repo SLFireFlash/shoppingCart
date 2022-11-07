@@ -37,3 +37,12 @@
     transform: translateY(50%);
     transform: translateX(20%);
 }
+.cart-title{
+    height: 60px;
+    background-color: rgb(206, 142, 59);
+    margin-top: 50px;
+    font-size: 35px;
+}
+.cart-img{
+    margin-left: 10px;
+}
