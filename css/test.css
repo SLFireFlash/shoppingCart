@@ -1,0 +1,27 @@
+
+.box-col{
+    width: 190px;
+    height: 292px;
+    background-color: #432C7A;
+    display: inline-block;
+    border-radius: 15px;
+    border: 2px solid #432C7A;
+    padding: 10px;
+    
+}
+.phone-img{
+    width:160px;
+    height: 212px;
+    border-radius: 25px;
+    border: 2px solid #80489C;
+
+}
+.phone-data{
+    width: 160px;
+    background-color: #80489C;
+    display: inline-block;
+    border-radius: 15px;
+    font-size: 20px;
+    font-family:monospace;
+    color: burlywood;
+}
