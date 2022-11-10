@@ -1,22 +1,43 @@
-const phoneStruct ='<div class="box-col"><div class="phone-img"><img class="phone-img" src="imgs/1.jpg" alt="phone01" ><div class="phone-data"><div class="phone-name">X<b>iaomi 13 Pro</b></div><div class="phone-price">760$</div><div class="add-to-cart"><button type="button" class="btn btn-success btn-cart">Add TO Cart</button></div></div></div> </div>';
-const cartStruct ='<div class="card" id="cart-data" style="width: 18rem;"><div class="card-header">cart</div><ul class="list-group list-group-flush"><li class="list-group-item" id="phone-name"></li><li class="list-group-item" id="phone-price"></li><li class="list-group-item" id="remove-from-cart"><button type="button" class="btn btn-danger" onclick="removeItem()">remove</button></li></ul></div>'
 
-let cart =[];
+
+const phoneStruct ='<div class="box-col"><div class="phone-img" id="phone-img"><img class="phone-img" id="img-link" alt="phone01" ><div class="phone-data"><div class="phone-name" id="phone-name-load"></div><div class="phone-price" id="phone-price-load"></div><div class="add-to-cart"><button type="button" class="btn btn-success btn-cart" id="add-to-cart-load">Add TO Cart</button></div></div></div> </div>';
+const cartStruct ='<div class="card" id="phone-card"  style="width: 18rem;"><ul class="list-group list-group-flush"><li class="list-group-item" id="phone-name-cart"></li><li class="list-group-item" id="phone-price-cart"></li><li class="list-group-item" id="remove-from-cart"><button type="button" class="btn btn-danger" onclick="removeItem()">remove</button></li></ul></div>'
+
+var cart =[];
 let count =0;
 
 function loadPhone(){
     const phoneList = document.getElementById("phone-list");
     phoneList.innerHTML += phoneStruct;
+
+    $.getJSON("https://dummyjson.com/products/1", function( data ) 
+    {
+        document.getElementById("img-link").setAttribute('src',data.thumbnail)
+        document.getElementById("phone-name-load").innerHTML = data.title
+        document.getElementById("phone-price-load").innerHTML=data.price
+
+    })
+    
+
+            
 }
 
-function addToCart(id,name,price){
-    const cartid = document.getElementById("cart-items");
-    cartid.innerHTML += cartStruct;
-    const phoneName = document.getElementById("phone-name");
-    const phonePrice = document.getElementById("phone-price");
-    cart.push(id);
-    phoneName.innerHTML=name;
-    phonePrice.innerHTML=price;
+function addToCart(name,price){
+    console.log("name:" + name)
+    console.log("price:"+price)
+    if (!cart.includes(price)){
+        var cartid = document.getElementById("cart-items");
+        cartid.innerHTML += cartStruct;
+
+        var phoneName = document.getElementById("phone-name-cart");
+        var phonePrice = document.getElementById("phone-price-cart");
+        
+        cart.push(price);
+        phoneName.innerHTML = name;
+        phonePrice.innerHTML = price;
+        
+    }
+ 
 }
 
 function removeItem(){
