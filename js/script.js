@@ -6,6 +6,7 @@ let structCount =1;
 var cartStruct =`<div class="card" id="phone-card-${count}"  style="width: 18rem;"><ul class="list-group list-group-flush"><li class="list-group-item" id="phone-name-cart-${count}"></li><li class="list-group-item" id="phone-price-cart-${count}"></li><li class="list-group-item" id="remove-from-cart${count}"><button type="button" class="btn btn-danger" onclick="removeItem()">remove</button></li></ul></div>`;
 
 
+
 function phoneStructFun(){
     
     //main dev
@@ -74,29 +75,22 @@ function phoneStructFun(){
         document.getElementById(`phone-name-load-${structCount}`).innerHTML = data.title
         document.getElementById(`phone-price-load-${structCount}`).innerHTML=data.price
         structCount++;
+        console.log(structCount)
 
     })
-
-
-
-
 }
-function loadPhone(){
-    const phoneList = document.getElementById("phone-list");
-    phoneList.innerHTML = phoneStruct;
-    
-    var productLink ="https://dummyjson.com/products/" + productcount
-
-    $.getJSON(productLink, function( data ) 
-    {
-        document.getElementById("img-link")('src',data.thumbnail)
-        document.getElementById(`phone-name-load-${structCount}`).innerHTML = data.title
-        document.getElementById(`phone-price-load-${structCount}`).innerHTML=data.price
-        productcount++;
-
-    })
-           
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
 }
+async function load20() {
+    for (let i = 1; i <20 ; i++) {        
+       await sleep(500);
+       phoneStructFun();
+       console.log(i)
+    }
+ }
+ load20()
+
 
 function addToCart(name,price){
     console.log("name:" + name)
